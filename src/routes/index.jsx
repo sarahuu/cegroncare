@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
+import RouteErrorPage from "../pages/RouteErrorPage";
 
 const AboutPage = lazy(() => import("../pages/AboutPage"));
 const ServicesPage = lazy(() => import("../pages/ServicesPage"));
@@ -23,48 +24,63 @@ export const router = createBrowserRouter(
     {
       path: "/",
       element: <MainLayout />,
+      // Pathless layout route so route errors (including a failed lazy chunk
+      // load) keep the header and footer and render inside <main>.
       children: [
-        { index: true, element: <HomePage /> },
-        { path: "about", element: load(<AboutPage />) },
         {
-          path: "services",
+          errorElement: <RouteErrorPage />,
           children: [
-            { index: true, element: load(<ServicesPage />) },
-            { path: "adult-homecare", element: load(<AhsPage />) },
+            { index: true, element: <HomePage /> },
+            { path: "about", element: load(<AboutPage />) },
             {
-              path: "children-and-young-people",
-              element: load(<CypPage />),
+              path: "services",
+              children: [
+                { index: true, element: load(<ServicesPage />) },
+                { path: "adult-homecare", element: load(<AhsPage />) },
+                {
+                  path: "children-and-young-people",
+                  element: load(<CypPage />),
+                },
+                {
+                  path: "cyp",
+                  element: (
+                    <Navigate to="/services/children-and-young-people" replace />
+                  ),
+                },
+              ],
+            },
+            { path: "for-families", element: load(<ForFamiliesPage />) },
+            { path: "faqs", element: load(<FaqsPage />) },
+            { path: "referrals", element: load(<ReferralsPage />) },
+            { path: "testimonials", element: load(<TestimonialsPage />) },
+            { path: "contact", element: load(<ContactPage />) },
+            {
+              path: "privacy",
+              element: load(<LegalPage documentKey="privacy" />),
             },
             {
-              path: "cyp",
+              path: "cookies",
+              element: load(<LegalPage documentKey="cookies" />),
+            },
+            { path: "terms", element: load(<LegalPage documentKey="terms" />) },
+
+            // Legacy addresses from the current WordPress site.
+            { path: "about-us", element: <Navigate to="/about" replace /> },
+            {
+              path: "adult-homecare-services",
+              element: <Navigate to="/services/adult-homecare" replace />,
+            },
+            {
+              path: "cyp-services",
               element: (
                 <Navigate to="/services/children-and-young-people" replace />
               ),
             },
+            { path: "contact-us", element: <Navigate to="/contact" replace /> },
+
+            { path: "*", element: load(<NotFoundPage />) },
           ],
         },
-        { path: "for-families", element: load(<ForFamiliesPage />) },
-        { path: "faqs", element: load(<FaqsPage />) },
-        { path: "referrals", element: load(<ReferralsPage />) },
-        { path: "testimonials", element: load(<TestimonialsPage />) },
-        { path: "contact", element: load(<ContactPage />) },
-        { path: "privacy", element: load(<LegalPage documentKey="privacy" />) },
-        { path: "cookies", element: load(<LegalPage documentKey="cookies" />) },
-        { path: "terms", element: load(<LegalPage documentKey="terms" />) },
-
-        // Legacy addresses from the current WordPress site.
-        { path: "about-us", element: <Navigate to="/about" replace /> },
-        {
-          path: "adult-homecare-services",
-          element: <Navigate to="/services/adult-homecare" replace />,
-        },
-        {
-          path: "cyp-services",
-          element: <Navigate to="/services/children-and-young-people" replace />,
-        },
-        { path: "contact-us", element: <Navigate to="/contact" replace /> },
-
-        { path: "*", element: load(<NotFoundPage />) },
       ],
     },
   ],

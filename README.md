@@ -42,6 +42,10 @@ Live URL: <https://sarahuu.github.io/cegroncare/>
 - **Routing** - the router uses `import.meta.env.BASE_URL` as its `basename`, and
   `scripts/spa-fallback.mjs` copies `index.html` to `404.html` after each build so
   deep links such as `/cegroncare/referrals` load the app instead of GitHub's 404 page.
+- **Stale chunks after a deploy** - hashed route chunks are replaced on every deploy.
+  A tab left open across a deploy reloads itself once when a lazy chunk fails to
+  load (`vite:preloadError` in `src/main.jsx`), and falls back to the branded error
+  route in `src/pages/RouteErrorPage.jsx` if it still fails.
 
 ### Build environment variables
 
