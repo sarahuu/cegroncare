@@ -14,6 +14,7 @@ import { getIcon } from "../ui/icons";
 import { faqs, processSteps } from "../../data/content";
 import { serviceLines } from "../../data/services";
 import { site } from "../../data/site";
+import { asset } from "../../lib/asset";
 
 export default function ServiceDetail({ line, whoFor = [] }) {
   const related = serviceLines.find((item) => item.slug !== line.slug);
@@ -22,7 +23,7 @@ export default function ServiceDetail({ line, whoFor = [] }) {
     <>
       <section className="relative isolate flex min-h-110 items-center overflow-hidden bg-primary lg:min-h-130">
         <img
-          src={line.image}
+          src={asset(line.image)}
           alt=""
           width="1600"
           height="900"
@@ -90,7 +91,7 @@ export default function ServiceDetail({ line, whoFor = [] }) {
                   className="overflow-hidden rounded-2xl border border-line bg-white shadow-card"
                 >
                   <img
-                    src={item.image}
+                    src={asset(item.image)}
                     alt={item.imageAlt}
                     width="1024"
                     height="683"
@@ -142,15 +143,6 @@ export default function ServiceDetail({ line, whoFor = [] }) {
                 lead="Every package starts with an assessment, so support matches the person rather than a fixed template."
               />
               <CheckList items={whoFor} columns={1} className="mt-6" />
-              <div className="mt-7">
-                <Button
-                  to="/process"
-                  variant="secondary"
-                  icon={<LuArrowRight aria-hidden="true" className="size-4" />}
-                >
-                  See our five-step process
-                </Button>
-              </div>
             </div>
 
             <Card tone="white" className="p-6 sm:p-8">

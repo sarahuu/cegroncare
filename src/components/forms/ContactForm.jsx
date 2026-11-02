@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   CheckboxField,
   DemoNotice,
@@ -189,12 +190,12 @@ export default function ContactForm() {
         label={
           <>
             I agree that Cegron Care may contact me about this enquiry. See our{" "}
-            <a
-              href="/privacy"
+            <Link
+              to="/privacy"
               className="font-medium text-primary underline decoration-accent underline-offset-4"
             >
               privacy policy
-            </a>
+            </Link>
             .
           </>
         }

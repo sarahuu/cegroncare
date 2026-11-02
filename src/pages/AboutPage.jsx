@@ -14,6 +14,7 @@ import ForFamiliesCta from "../components/sections/ForFamiliesCta";
 import QualityTrust from "../components/sections/QualityTrust";
 import CtaBand from "../components/ui/CtaBand";
 import { site } from "../data/site";
+import { asset } from "../lib/asset";
 
 export default function AboutPage() {
   return (
@@ -26,7 +27,7 @@ export default function AboutPage() {
       />
       <section className="relative isolate flex min-h-110 items-center overflow-hidden bg-primary lg:min-h-130">
         <img
-          src="/images/c20.jpg"
+          src={asset("/images/c20.jpg")}
           alt=""
           width="1600"
           height="900"

@@ -4,6 +4,7 @@ import Container from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeader from "../ui/SectionHeader";
 import Button from "../ui/Button";
+import { asset } from "../../lib/asset";
 import { serviceLines } from "../../data/services";
 
 export default function ServicesGrid() {
@@ -28,7 +29,7 @@ export default function ServicesGrid() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
             >
               <img
-                src={line.image}
+                src={asset(line.image)}
                 alt={line.imageAlt}
                 width="1200"
                 height="800"

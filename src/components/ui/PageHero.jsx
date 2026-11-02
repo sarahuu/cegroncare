@@ -1,5 +1,6 @@
 import Container from "./Container";
 import Breadcrumbs from "./Breadcrumbs";
+import { asset } from "../../lib/asset";
 
 export default function PageHero({
   eyebrow,
@@ -44,7 +45,7 @@ export default function PageHero({
           {image && (
             <div className="relative hidden lg:block">
               <img
-                src={image}
+                src={asset(image)}
                 alt={imageAlt}
                 width="760"
                 height="560"

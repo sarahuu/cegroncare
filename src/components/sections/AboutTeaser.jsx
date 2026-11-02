@@ -3,6 +3,7 @@ import Container from "../ui/Container";
 import Section from "../ui/Section";
 import Button from "../ui/Button";
 import CheckList from "../ui/CheckList";
+import { asset } from "../../lib/asset";
 
 const points = [
   "A conversation with no obligation",
@@ -18,7 +19,7 @@ export default function AboutTeaser() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="relative order-2 lg:order-1">
             <img
-              src="/images/c18.jpg"
+              src={asset("/images/c18.jpg")}
               alt="A group of people talking together around a table"
               width="1200"
               height="800"

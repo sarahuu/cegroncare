@@ -13,7 +13,9 @@ export const site = {
   areaLine: "Aberdeen City & Aberdeenshire",
   availability: "Day, night, weekend and overnight support",
   whatsapp: "https://wa.link/tr86zy",
-  baseUrl: "https://www.cegroncare.co.uk",
+  baseUrl:
+    import.meta.env.VITE_SITE_URL?.replace(/\/+$/, "") ||
+    "https://www.cegroncare.co.uk",
 };
 
 export const navigation = [
@@ -31,6 +33,7 @@ export const navigation = [
     ],
   },
   { label: "For Families", to: "/for-families" },
+  { label: "Referrals", to: "/referrals" },
   { label: "FAQs", to: "/faqs" },
   { label: "Contact", to: "/contact" },
 ];

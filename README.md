@@ -1,16 +1,56 @@
-# React + Vite
+# Cegron Care website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing site for Cegron Care (adult homecare and children & young people support
+across Aberdeen City and Aberdeenshire).
 
-Currently, two official plugins are available:
+- **Frontend:** React 19 + Vite
+- **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`)
+- **Routing:** React Router 7 (`createBrowserRouter`)
+- **Backend:** none - forms are validated in the browser and are not submitted anywhere yet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local development
 
-## React Compiler
+```bash
+npm install
+npm run dev      # http://localhost:5173/cegroncare/
+npm run lint
+npm run build    # creates dist/ and dist/404.html
+npm run preview  # serves the production build at http://localhost:4173/cegroncare/
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The dev server and preview server both use the same base path as the deployed site
+(`/cegroncare/`), so local URLs match production.
 
-## Expanding the ESLint configuration
+## Deployment (GitHub Pages)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The site is deployed by `.github/workflows/deploy.yml` on every push to `main`
+(or manually from the Actions tab).
+
+Live URL: <https://sarahuu.github.io/cegroncare/>
+
+### One-time setup
+
+1. Create the `sarahuu/cegroncare` repository on GitHub (public).
+2. In **Settings -> Pages**, set **Source** to **GitHub Actions**.
+3. Push `main`. The workflow lints, builds and publishes `dist/`.
+
+### How the Pages quirks are handled
+
+- **Asset paths** - `vite.config.js` sets `base` to `/cegroncare/`. Root-relative
+  files in `public/` are referenced through the `asset()` helper in
+  `src/lib/asset.js` so they resolve under that subpath.
+- **Routing** - the router uses `import.meta.env.BASE_URL` as its `basename`, and
+  `scripts/spa-fallback.mjs` copies `index.html` to `404.html` after each build so
+  deep links such as `/cegroncare/referrals` load the app instead of GitHub's 404 page.
+
+### Build environment variables
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `VITE_BASE_PATH` | `/cegroncare/` | Path the site is served from. Use `/` for a custom domain or a `*.github.io` user site. |
+| `VITE_SITE_URL` | `https://www.cegroncare.co.uk` | Origin + base used for canonical links, Open Graph URLs and JSON-LD. Should include the base path. |
+
+The workflow sets both to the GitHub Pages values. When the site moves to
+`www.cegroncare.co.uk`, set `VITE_BASE_PATH=/` and
+`VITE_SITE_URL=https://www.cegroncare.co.uk` (also add a `public/CNAME` file) and
+update `public/sitemap.xml` and `public/robots.txt` for the new host.

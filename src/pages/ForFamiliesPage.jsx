@@ -17,6 +17,7 @@ import {
   familySupport,
 } from "../data/content";
 import { site } from "../data/site";
+import { asset } from "../lib/asset";
 
 const familyFaqs = faqCategories.find((category) => category.id === "families");
 
@@ -31,7 +32,7 @@ export default function ForFamiliesPage() {
       />
       <section className="relative isolate flex min-h-110 items-center overflow-hidden bg-primary lg:min-h-130">
         <img
-          src="/images/services/adult-04.jpeg"
+          src={asset("/images/services/adult-04.jpeg")}
           alt=""
           width="1600"
           height="900"

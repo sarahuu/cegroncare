@@ -2,6 +2,7 @@ import { LuArrowRight, LuCheck, LuMail, LuMapPin, LuPhone } from "react-icons/lu
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 import { site } from "../../data/site";
+import { asset } from "../../lib/asset";
 
 const heroFacts = [
   "Personalised care plans",
@@ -14,7 +15,7 @@ export default function HeroHome() {
   return (
     <section className="relative isolate flex min-h-140 items-center overflow-hidden bg-primary lg:min-h-160">
       <img
-        src="/images/c15.jpg"
+        src={asset("/images/c15.jpg")}
         alt="A carer gently holding the hands of an older person"
         width="1600"
         height="900"

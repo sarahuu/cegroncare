@@ -6,7 +6,6 @@ import { LuArrowUpRight, LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 const exploreLinks = [
   { label: "About us", to: "/about" },
   { label: "For families", to: "/for-families" },
-  { label: "Our process", to: "/process" },
   { label: "FAQs", to: "/faqs" },
   { label: "Contact", to: "/contact" },
 ];

@@ -154,7 +154,7 @@ export const audiencePanels = [
       "Regular reviews with the people who matter",
       "A small, familiar team of carers",
     ],
-    cta: { label: "How our process works", to: "/process" },
+    cta: { label: "What families can expect", to: "/for-families" },
   },
   {
     id: "professionals",
