@@ -39,7 +39,7 @@ export default function Header() {
             />
           </Link>
           <Navbar />
-          <div className="hidden xl:block">
+          <div className="hidden lg:block">
             <Button to="/contact" variant="accent" size="sm">
               Request care
             </Button>

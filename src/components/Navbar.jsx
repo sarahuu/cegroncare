@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
+      <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
         {navigation.map((item) => (
           <NavLink
             key={item.to}
@@ -54,7 +54,7 @@ export default function Navbar() {
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="inline-flex size-11 items-center justify-center rounded-lg border border-line text-primary xl:hidden"
+        className="inline-flex size-11 items-center justify-center rounded-lg border border-line text-primary lg:hidden"
       >
         {open ? (
           <LuX aria-hidden="true" className="size-5" />
@@ -66,7 +66,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-white px-5 pb-8 pt-4 shadow-card-hover xl:hidden"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-white px-5 pb-8 pt-4 shadow-card-hover lg:hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col gap-1">
             {mobileLinks.map((item) => (
