@@ -22,15 +22,12 @@ export const navigation = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   {
-    label: "Services",
-    to: "/services",
-    children: [
-      { label: "Adult Homecare", to: "/services/adult-homecare" },
-      {
-        label: "Children & Young People",
-        to: "/services/children-and-young-people",
-      },
-    ],
+    label: "Adult Homecare",
+    to: "/services/adult-homecare",
+  },
+  {
+    label: "Children & Young People",
+    to: "/services/children-and-young-people",
   },
   { label: "For Families", to: "/for-families" },
   { label: "Referrals", to: "/referrals" },
